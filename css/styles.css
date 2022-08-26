@@ -264,6 +264,10 @@ button {
     background-color: var(--main-background-color);
 }
 
+.bonus-list
+{
+    display: flex;
+}
 .bonus {
     display: flex;
     
