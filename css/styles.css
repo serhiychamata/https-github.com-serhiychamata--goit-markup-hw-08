@@ -264,6 +264,25 @@ button {
     background-color: var(--main-background-color);
 }
 
+.work-title-heading {
+    font-family: 'Roboto';
+     font-style: normal;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 42px;
+        text-align: center;
+        letter-spacing: 0.03em;
+    
+        color: #212121;
+
+        margin-bottom: 10px;
+        
+            font-size: 14px;
+            
+            font-weight: 700;
+            line-height: 1.14;
+            color: var(--header-color);
+}
 .bonus-list
 {
     display: flex;
@@ -275,11 +294,7 @@ button {
 
 
 
-.bonus-section {
-    display: flex;
-    flex-wrap: wrap;
 
-}
 
 .bonus-item:not(:last-child) {
     margin-right: 30px;
@@ -317,6 +332,10 @@ button {
     color: var(--header-color);
 }
 
+.team-headline,
+.team-text {
+text-align: center;    
+}
 .work-title-list {
     display: flex;
     gap: 30px;
@@ -336,6 +355,7 @@ button {
 }
 
 .team-item {
+    
     background-color: var(--main-background-color);
     width: 270px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
@@ -353,6 +373,8 @@ button {
 }
 
 .team-headline {
+    margin-top: 30px;
+        
     margin-bottom: 10px;
 
     font-weight: 500;
@@ -363,6 +385,7 @@ button {
 }
 
 .team-text {
+    margin-bottom: 30px;
     font-size: 16px;
     line-height: 1.19;
 }
@@ -412,6 +435,8 @@ button {
 }
 
 .works-item {
+    border: 1px solid #EEEEEE;
+    background: var(--main-background-color);
     flex-basis: calc(100% / 3 - 30px);
     margin-right: 30px;
     margin-bottom: 30px;
