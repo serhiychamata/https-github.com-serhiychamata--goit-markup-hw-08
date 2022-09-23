@@ -1,4 +1,4 @@
-/*---------------------------- global------------------------------------ */
+/* ---------------------------- global------------------------------------
 :root {
   /* ================= background colors ===============*/
   --main-background-color: #ffffff;
@@ -420,16 +420,16 @@ button {
   background-size: 70px 70px;
 }
 .antenna::before {
-  background-image: url(../images/antena.svg)
+  background-image: url(../images/antenna.svg)
 }
 .clock::before {
-  background-image: url(../images/astronauft.svg);
+  background-image: url(../images/astronaut.svg);
 }
 .diagram::before {
   background-image: url(../images/clock.svg);
 }
 .astronaut::before {
-  background-image: url(../images/diagramma.svg);
+  background-image: url(../images/diagram.svg);
 }
 .benefits-headline {
   margin-bottom: 10px;
@@ -907,4 +907,4 @@ button {
   line-height: 1.88;
   letter-spacing: 0.03em;
 }
-
+ */
