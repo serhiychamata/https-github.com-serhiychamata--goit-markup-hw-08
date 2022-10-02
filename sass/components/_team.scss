@@ -9,25 +9,46 @@
 
 .team__heading {
     @extend %heading;
-    margin-bottom: 50px;
 }
 
 .team__list {
     @extend %list;
-    @include flex-l(30px);
+
+    @include media(min, tablet) {
+        @include flex-l(30px);
+        flex-wrap: wrap;
+    }
+
+    @include media(min, desktop) {
+        @include flex-l(30px);
+        flex-wrap: nowrap;
+    }
 }
 
 .team__item {
     background-color: map-get($bgcolor, 'main');
-    width: 270px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
         0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 0px 0px 4px 4px;
+
+    &:not(:last-child) {
+        @include media(max, tablet) {
+            margin-bottom: 30px;
+        }
+    }
+
+    @media screen and (min-width: map-get($breakpoints, 'tablet')) and (max-width: (map-get($breakpoints, 'desktop')) - 0.5px) {
+        @include flex-basis(2, 30px);
+    }
 }
 
 .socials {
-    padding: 30px 0;
+    padding: 16px 0 24px;
     text-align: center;
+
+    @include media(min, desktop) {
+        padding: 16px 0 30px;
+    }
 }
 
 .socials__headline {
@@ -40,17 +61,19 @@
 }
 
 .socials__text {
+    margin-bottom: 16px;
+
     @include font-size(16px, 19px);
 }
 
 .socials__list {
     @extend %list;
     @include flex-l(10px);
-    margin-top: 16px;
 }
 
 .social__link {
     @extend %link;
+    @include flex-s();
     @include socials(map-get($bgcolor, 'main'), map-get($decolors, 'btn-accent'));
     color: map-get($decolors, 'social-icons');
 }

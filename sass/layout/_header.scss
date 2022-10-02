@@ -4,58 +4,158 @@
 
 .header__container {
     @extend %container;
-    @include flex-s;
 }
 
 .nav {
-    @include flex-s;
+    @include media(max, tablet) {
+        @include flex-m(space-between, center);
+    }
+
+    @include media(min, tablet) {
+        @include flex-s;
+    }
 }
 
 .logo {
     @extend %link;
+
+    display: inline-block;
+    padding-top: 16px;
+    padding-bottom: 16px;
+
     color: map-get($txtcolor, 'logo');
     font-family: $secondary;
     font-weight: 700;
-    @include font-size(26px, 31px);
+    @include font-size(24px, 28px);
     letter-spacing: 0.03em;
-}
 
-.nav__logo {
-    margin-right: 93px;
+    @include media(min, tablet) {
+        padding-top: 26px;
+        padding-bottom: 26px;
+        margin-right: 88px;
+    }
+
+    @include media(min, desktop) {
+        @include font-size(26px, 31px);
+        margin-right: 93px;
+    }
 }
 
 .logo__accent {
     color: map-get($txtcolor, 'text-accent');
 }
 
-.nav__list {
-    @extend %list;
-    display: flex;
-}
+.mobile__btn {
+    @include media(max, tablet) {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        cursor: pointer;
+        background-color: transparent;
+        color: #000000;
 
-.nav__item {
-    position: relative;
-    color: map-get($txtcolor, 'header');
+        &--open {
+            display: block;
 
-    &:not(:last-child) {
-        margin-right: 50px;
+            .menu.is-open & {
+                display: none;
+            }
+        }
+
+        &--close {
+            display: none;
+
+            .menu.is-open & {
+                display: block;
+                position: absolute;
+                top: 10px;
+                right: 15px;
+            }
+        }
+    }
+
+    @include media(min, tablet) {
+        display: none;
     }
 }
 
-.nav__link,
-.contacts__link {
-    @extend %link;
-    padding-top: 32px;
-    padding-bottom: 32px;
+.mobile__icon {
+    width: 40px;
+    height: 40px;
+    fill: currentColor;
+    @include animation(fill);
 
+    .mobile__btn:hover &,
+    .mobile__btn:focus & {
+        fill: map-get($txtcolor, 'text-accent');
+    }
+}
+
+.menu {
     font-weight: 500;
-    @include font-size();
     letter-spacing: 0.02em;
 }
 
+.nav__content {
+    @include media(max, tablet) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        transform: translateX(100%);
+        @include animation(transform);
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 48px 40px;
+        width: 100%;
+        height: 100%;
+
+        background-color: map-get($bgcolor, 'main');
+
+        .menu.is-open & {
+            transform: translateX(0);
+        }
+    }
+
+    @include media(min, tablet) {
+        @include flex-s();
+    }
+}
+
+.nav__list {
+    @extend %list;
+
+    @include media(max, tablet) {
+        margin-bottom: auto;
+    }
+
+    @include media(min, tablet) {
+        display: flex;
+    }
+}
+
+.nav__item {
+    @include media(max, tablet) {
+        &:not(:last-child) {
+            margin-bottom: 32px;
+        }
+    }
+
+    @include media(min, tablet) {
+        &:not(:last-child) {
+            position: relative;
+            margin-right: 50px;
+        }
+    }
+}
+
 .nav__link {
-    display: inline-block;
-    color: var(--header-color);
+    @extend %link;
+
+    @include font-size();
+    color: map-get($txtcolor, 'header');
     @include animation(color);
 
     &:hover,
@@ -65,49 +165,162 @@
 
     &--current {
         color: map-get($txtcolor, 'text-accent');
+    }
 
-        &::after {
-            position: absolute;
-            bottom: 0;
-            left: 0;
+    @include media(max, tablet) {
+        @include font-size(40px, 47px);
+    }
 
-            display: inline-block;
-            content: '';
-            width: 100%;
-            height: 4px;
-            background-color: map-get($txtcolor, 'text-accent');
-            border-radius: 2px;
+    @include media(min, tablet) {
+        display: inline-block;
+        padding-top: 32px;
+        padding-bottom: 32px;
+
+        &--current {
+            &::after {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+
+                display: inline-block;
+                content: '';
+                width: 100%;
+                height: 4px;
+                background-color: map-get($txtcolor, 'text-accent');
+                border-radius: 2px;
+            }
         }
     }
 }
 
 .contacts {
     @extend %list;
-    @include flex-s;
-    margin-left: auto;
+
+    @include media(min, tablet) {
+        display: flex;
+        flex-direction: column-reverse;
+
+        margin-left: 90px;
+    }
+
+    @include media(min, desktop) {
+        flex-direction: row-reverse;
+        @include flex-l(30px);
+        margin-left: 315px;
+    }
 }
 
-.contacts__item:first-child {
-    margin-right: 50px;
+.contacts__item {
+    @include media(max, tablet) {
+        &:first-child {
+            margin-bottom: 32px;
+        }
+    }
+
+    &:last-child {
+        @include media(min, tablet) {
+            margin-bottom: 10px;
+        }
+
+        @include media(min, desktop) {
+            margin-bottom: 0;
+        }
+    }
 }
 
 .contacts__link {
-    @include flex-s;
-
-    color: var(--main-text-color);
+    @extend %link;
+    color: inherit;
     @include animation(color);
+
+    @include flex-s;
+    @include font-size(12px, 14px);
+
+    @include media(min, desktop) {
+        @include font-size(14px, 16px);
+    }
 
     &:hover,
     &:focus {
         color: map-get($txtcolor, 'text-accent');
     }
+
+    @include media(max, tablet) {
+        &--big {
+            @include font-size(34px, 40px);
+            color: map-get($txtcolor, 'text-accent');
+        }
+
+        &--small {
+            @include font-size(24px, 28px);
+        }
+    }
+
+    @include media(max, phone) {
+        &--big {
+            font-size: 24px;
+        }
+    }
 }
 
 .contacts__icon {
-    @include svg(16px, 12px);
-    margin-right: 10px;
+    @include media(max, tablet) {
+        display: none;
+    }
 
-    &:last-child {
-        height: 16px;
+    margin-right: 8px;
+
+    &--smartphone {
+        @include svg(10px, 14px);
+
+        @include media(min, desktop) {
+            @include svg(10px, 16px);
+        }
+    }
+
+    &--envelope {
+        @include svg(14px, 10px);
+
+        @include media(min, desktop) {
+            @include svg(16px, 12px);
+        }
+    }
+}
+
+.nav-socials {
+    @extend %list;
+
+    margin-top: 64px;
+    @include flex-l(10px, flex-start, center);
+
+    @include media(max, phone) {
+        gap: 5px;
+    }
+
+    @include media(min, tablet) {
+        display: none;
+    }
+}
+
+.nav-socials__item {
+    &:not(:last-child) {
+        padding-right: 10px;
+        border-right: 1px solid rgba(33, 33, 33, 0.2);
+    }
+
+    @include media(max, phone) {
+        &:not(:last-child) {
+            padding-right: 5px;
+        }
+    }
+}
+
+.nav-socials__link {
+    @extend %link;
+    @include font-size(18px, 22px);
+    color: map-get($txtcolor, 'text-accent');
+
+    @include media(max, phone) {
+        @include font-size(12px, 16px);
     }
 }

@@ -1,7 +1,7 @@
 /* ====================== line height calculation =======================*/
 @mixin font-size($size: 14px, $height: 16px) {
     font-size: $size;
-    line-height: $height / $size;
+    line-height: calc($height / $size);
 }
 
 /* ============================ flex patterns ===========================*/
@@ -21,6 +21,10 @@
     gap: $gap;
     justify-content: $x;
     align-items: $y;
+}
+
+@mixin flex-basis($n, $gap) {
+    flex-basis: calc((100% - ($gap * ($n - 1))) / $n);
 }
 
 /* ============================= position pattern =======================*/
@@ -70,5 +74,20 @@
     &:hover,
     &:focus {
         background-color: $hoverbg;
+    }
+}
+
+/* ============================ media pattern ======================*/
+@mixin media($max-or-min: min, $device) {
+    @if $max-or-min ==max {
+        @media screen and (#{$max-or-min}-width: (map-get($breakpoints, '#{$device}') - 0.5px)) {
+            @content;
+        }
+    }
+
+    @else {
+        @media screen and (#{$max-or-min}-width: map-get($breakpoints, '#{$device}')) {
+            @content;
+        }
     }
 }

@@ -13,25 +13,38 @@
 
 .benefits__list {
     @extend %list;
-    @include flex-m(space-between, flex-start);
+
+    @include media(min, tablet) {
+        @include flex-l(30px);
+        flex-wrap: wrap;
+    }
+
+    @include media(min, desktop) {
+        @include flex-m(space-between, flex-start);
+        flex-wrap: nowrap;
+    }
 }
 
 .benefits__item {
-    width: calc(100% - 90px / 4);
-
-    &:not(:last-child) {
-        margin-right: 30px;
-    }
-
     &::before {
-        @include pseudo(270px, 120px);
+        @include pseudo(100%, 120px);
         display: inline-block;
         margin-bottom: 30px;
 
         background-color: map-get($bgcolor, 'accent');
+        background-size: 70px 70px;
         background-repeat: no-repeat;
         background-position: 50% 50%;
-        background-size: 70px 70px;
+    }
+
+    &:not(:last-child) {
+        @include media(max, tablet) {
+            margin-bottom: 30px;
+        }
+    }
+
+    @media screen and (min-width: map-get($breakpoints, 'tablet')) and (max-width: (map-get($breakpoints, 'desktop')) - 0.5px) {
+        @include flex-basis(2, 30px);
     }
 }
 
@@ -39,21 +52,22 @@ $pictureList: 'antenna', 'clock', 'diagram', 'astronaut';
 
 @each $picture in $pictureList {
     .benefits__#{$picture}::before {
-        background-image: url('../../images/audvantages/#{$picture}.svg');
+        background-image: url('../images/audvantages/#{$picture}.svg');
     }
 }
 
-.benefits__item benefits__antenna {
-    background-image: url(../../images/audvantages/antenna.svg);
-}
 .benefits__headline {
     margin-bottom: 10px;
 
-    font-size: 14px;
-    text-transform: uppercase;
     font-weight: 700;
     @include font-size();
+    text-transform: uppercase;
+    text-align: center;
     color: map-get($txtcolor, 'header');
+
+    @include media(min, tablet) {
+        text-align: start;
+    }
 }
 
 .benefits__text {

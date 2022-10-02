@@ -4,14 +4,28 @@
 }
 
 %container {
-    width: 1200px;
     padding: 0 15px;
     margin: 0 auto;
+
+    @media screen and (min-width: map-get($breakpoints, 'phone')) {
+        width: 480px;
+    }
+
+    @media screen and (min-width: map-get($breakpoints, 'tablet')) {
+        width: 768px;
+    }
+
+    @media screen and (min-width: map-get($breakpoints, 'desktop')) {
+        width: 1200px;
+    }
 }
 
 %section {
-    padding-top: 94px;
-    padding-bottom: 94px;
+    padding: 60px 0;
+
+    @media screen and (min-width: map-get($breakpoints, 'desktop')) {
+        padding: 94px 0;
+    }
 }
 
 %list {
@@ -22,7 +36,7 @@
 
 %link {
     text-decoration: none;
-    color: var(--main-text-color);
+    color: map-get($txtcolor, 'main');
 }
 
 /* =================== visually-hidden =================*/
@@ -47,9 +61,17 @@
 
 /* =================== section heading pattern =================*/
 %heading {
+    margin-bottom: 30px;
+
     font-weight: 700;
-    font-size: 36px;
+    font-size: 28px;
     line-height: 1.17;
-    text-align: center;
     color: map-get($txtcolor, 'header');
+    text-align: center;
+
+    @media screen and (min-width: map-get($breakpoints, 'desktop')) {
+        margin-bottom: 50px;
+
+        font-size: 36px;
+    }
 }
